@@ -1,0 +1,53 @@
+/**
+ * ----
+ * Project URL:
+ * https://github.com/rafialhamd/HyperLedger-Car-Trading
+ * ----
+ * Author: Rafiudeen Chozhan Kumarasamy
+ * RafiAlhamd.com | @RafiAlhamd
+ * ----
+ * Model file:
+ * Defines assets and transactions. 
+ * 
+ */
+
+namespace com.rafialhamd.model
+
+enum CarMake {
+  o  BMW
+  o  FORD
+  o  HONDA
+  o  TATA
+  o  TOYOTA
+}
+
+asset UserAccount identified by userId {
+  o String userId
+  o String firstName
+  o String lastName
+}
+
+asset Car identified by carId {
+  o String carId
+  o CarMake make 
+  o String model
+  o String year
+  o String registrationNumber
+  o Boolean forSale
+  o Double price
+  --> UserAccount owner
+}
+
+transaction SellCarTxn {
+  --> Car car
+  --> UserAccount newOwner
+  o Double price
+}
+
+transaction PrintCarDetailsTxn {
+  --> Car car
+}
+
+transaction PrintUserAccountDetailsTxn {
+  --> UserAccount userAccount
+}
